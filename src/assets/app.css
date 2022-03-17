@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+table.style-1 {
+  @apply w-full;
+}
+table.style-1 th {
+  @apply p-1;
+}
+/* table.style-1 th */
