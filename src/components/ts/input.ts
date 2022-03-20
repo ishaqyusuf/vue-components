@@ -22,6 +22,7 @@ let useInput = (props, slots, emit, form) => {
     selection: [],
     inputRef: ref({}),
     simple: true,
+    // dirty: computed(() => )
     mode: "Input" as
       | "Input"
       | "Autocomplete"
@@ -231,9 +232,10 @@ let InputComponent = (ctx) => {
         "div",
         {
           class: {
-            "rounded-lg ": !ctx.props.tile,
-            "ring-2": ctx.focused,
-            "border border-gray-300": true,
+            "border shadow-sm": true,
+            "rounded-md ": !ctx.props.tile,
+            "ring-indigo-500 border-indigo-500": ctx.focused,
+            "border-gray-300": !ctx.focused,
           },
         },
         [
@@ -319,11 +321,14 @@ let _Input = ({ props, slots, ...ctx }) => {
             refInFor: true,
             name: props.name,
             id: ctx.id,
+            type: props.type,
+            autocomplete: props.type,
             class: {
               "pr-6": ctx.list.hasSelection,
               "": !ctx.list.hasSelection,
+              "text-gray-900 placeholder-gray-500": true,
               "focus:outline-none bg-transparent w-full": true,
-              "p-1 text-sm": props.dense,
+              "p-1 sm:text-sm": props.dense,
               "py-1.5": !props.dense,
               "pr-2": !slots.append && !props.suffix,
               "pl-2": !slots.append && !props.prefix,

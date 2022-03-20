@@ -41,15 +41,16 @@
       </x-autocomplete>
     </div>
     <div class="m-10 grid grid-cols-4 gap-6">
-      <x-search-input url="xyz" label="Name" dtf name="name">
+      <x-search-input type="name" url="xyz" label="Name" dtf name="name">
         <template #itemText="{ data }">
           <div>{{ data.name }}</div>
           <div>{{ data.email }}</div>
         </template>
       </x-search-input>
       <x-autocomplete
+        type="email"
         label="Email"
-        :onSelect="addressSelected"
+        dtf
         :items="_data.addressList"
         name="email"
       >
@@ -58,10 +59,16 @@
           <div>{{ data.email }}</div>
         </template></x-autocomplete
       >
-      <x-input name="phone" :prefix="form.prefix" add-on label="Phone" />
-      <x-input name="country" label="Country" />
-      <x-input name="state" label="State" />
-      <x-input name="city" label="City" />
+      <x-input
+        name="phone"
+        type="phone"
+        :prefix="form.prefix"
+        add-on
+        label="Phone"
+      />
+      <x-input name="country" type="country" label="Country" />
+      <x-input name="state" type="state" label="State" />
+      <x-input name="city" type="city" label="City" />
       <x-input name="payment" label="Payment" add-on suffix="$" />
     </div>
   </div>
