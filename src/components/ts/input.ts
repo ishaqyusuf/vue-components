@@ -198,6 +198,8 @@ export let SearchInput = defineComponent({
     });
     ctx._onInput = (e) => {
       searchInput.value = e;
+      ctx._model.text = ctx._model.value = e;
+      ctx.setValue();
       console.log(e);
     };
 
@@ -294,7 +296,7 @@ let _Label = (ctx) => {
         "div",
         {
           class: {
-            "font-semibold": true,
+            "font-semibold mx-1 mb-2": true,
           },
         },
         ctx.props.label
@@ -395,13 +397,14 @@ let simpleList = (ctx) => {
     },
     expand(items) {
       let { itemText, itemValue } = ctx.props;
-      items.map((item) => {
-        _.items.unshift({
+      let _items = items.map((item) => {
+        return {
           data: item,
           text: _itemValue(item, itemText),
           value: _itemValue(item, itemValue),
-        });
+        };
       });
+      _.items = _items;
     },
     init: (items, reset = true) => {
       let { itemText, itemValue } = ctx.props;
